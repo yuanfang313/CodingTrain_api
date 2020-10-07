@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        text-align: center;
+        margin-top: 10%;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>Data Selfie App</h1>
+        <h3><a href="/index.html">Input</a> | <a href="/">Output</a></h3>
+        <h2>Output</h2>
+        <div id='root'></div>
+    </div>
+    <script>
+        getData();
+        async function getData() {
+
+            const res = await fetch('/api')
+            const data = await res.json();
+            console.log(data);
+
+            for (item of data) {
+                const root = document.getElementById('root');
+                const coordsDiv = document.createElement('div');
+                const fruitDiv = document.createElement('div');
+                const timeDiv = document.createElement('div');
+                const image = document.createElement('img');
+
+                timeDiv.textContent = new Date(item.timestamp).toLocaleDateString();
+                coordsDiv.textContent = `Latitude:${item.lat}°, Longitude:${item.lon}°`;
+                fruitDiv.textContent = `Fruit: ${item.inputFruit}`;
+                image.src = `./images/${item.fileName}`;
+
+                root.append(timeDiv, coordsDiv, fruitDiv, image);
+            }
+
+        }
+    </script>
+</body>
+
+</html>

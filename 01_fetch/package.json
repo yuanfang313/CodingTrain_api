@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "learning fetch",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "live-server ."
   },
   "author": "Yuan",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.20.0",
     "live": "^0.1.25-beta.0",
     "server": "^1.0.30"
   }
